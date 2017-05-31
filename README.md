@@ -1,6 +1,8 @@
 # Google Firebase Cloud Messaging Cordova Push Plugin
 
-TEST 
+## Fixed in fork
+- < iOS10 Bug
+- Google Service Issue
 
 > Extremely easy plug&play push notification plugin for Cordova applications with Google Firebase FCM.
 
