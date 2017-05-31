@@ -206,7 +206,15 @@ fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
         [FCMPlugin.fcmPlugin notifyOfMessage:jsonData];
     // app is in background or in stand by (NOTIFICATION WILL BE TAPPED)
     }
-
+    if (application.applicationState == UIApplicationStateInactive) {
+        [userInfoMutable setValue:@(YES) forKey:@"wasTapped"];
+        NSLog(@"app inactive - enable wasTapped");
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:userInfoMutable
+                                                           options:0
+                                                             error:&error];
+        [FCMPlugin.fcmPlugin notifyOfMessage:jsonData];
+        // app is in background or in stand by (NOTIFICATION WILL BE TAPPED)
+    }
     completionHandler(UIBackgroundFetchResultNoData);
 }
 // [END receive_message iOS < 10]
